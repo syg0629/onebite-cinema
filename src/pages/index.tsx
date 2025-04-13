@@ -4,7 +4,20 @@ import style from "./index.module.css";
 import movie from "@/mock/dummy.json";
 import MovieItem from "@/components/movie-item";
 
-export default function Home() {
+export const getServerSideProps = () => {
+  // 사전 렌더링 과정에서 컴포넌트보다 먼저 실행되어서, 컴포넌트에 필요한 데이터를 불러오는 함수. 객체를 반환해야 함.
+  // 서버 측에서 실행
+  const data = "안녕";
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
+
+export default function Home(data: { data: string }) {
+  console.log(data);
   return (
     <div className={style.container}>
       <section>
