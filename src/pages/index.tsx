@@ -3,21 +3,25 @@ import { ReactNode } from "react";
 import style from "./index.module.css";
 import movie from "@/mock/dummy.json";
 import MovieItem from "@/components/movie-item";
+import { InferGetServerSidePropsType } from "next";
+import fetchMovies from "@/lib/fetch-movies";
 
-export const getServerSideProps = () => {
+export const getServerSideProps = async () => {
   // 사전 렌더링 과정에서 컴포넌트보다 먼저 실행되어서, 컴포넌트에 필요한 데이터를 불러오는 함수. 객체를 반환해야 함.
   // 서버 측에서 실행
-  const data = "안녕";
+  const allMovies = await fetchMovies();
 
   return {
-    props: {
-      data,
-    },
+    props: { allMovies },
   };
 };
 
-export default function Home(data: { data: string }) {
-  console.log(data);
+export default function Home({
+  allMovies,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  //함수 반환값 타입을 추론하는 유틸리티
+  console.log(allMovies);
+
   return (
     <div className={style.container}>
       <section>
