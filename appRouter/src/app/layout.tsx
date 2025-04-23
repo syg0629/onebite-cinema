@@ -11,11 +11,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className={style.container}>
-          <header>
-            <Link href={"/"}>📚 ONEBITE CINEMA</Link>
+          <header className={style.header}>
+            <Link href={"/"}>ONEBITE CINEMA</Link>
           </header>
-          <main>{children}</main>
-          <footer></footer>
+          <main className={style.main}>{children}</main>
+          <footer className={style.footer}></footer>
         </div>
       </body>
     </html>

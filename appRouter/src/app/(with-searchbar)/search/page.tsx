@@ -1,5 +1,5 @@
-import books from "@/mock/books.json";
-import BookItem from "@/components/book-item";
+import movies from "@/mock/movies.json";
+import MovieItem from "@/components/movie-item";
 
 export default async function Page({
   searchParams,
@@ -10,8 +10,8 @@ export default async function Page({
 
   return (
     <div>
-      {books.map((book) => (
-        <BookItem key={book.id} {...book} />
+      {movies.map((movie) => (
+        <MovieItem key={movie.id} {...movie} />
       ))}
     </div>
   );

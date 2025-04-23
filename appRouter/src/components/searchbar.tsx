@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import style from "./serachbar.module.css";
 
-export default function Searchbar() {
+export default function Searchbar({ children }: { children: ReactNode }) {
   const router = useRouter();
   //app router에서는 router.query를 사용할 수 없다. useSearchParams를 사용해야 함
   const searchParams = useSearchParams();
@@ -32,13 +32,17 @@ export default function Searchbar() {
   };
 
   return (
-    <div className={style.container}>
-      <input
-        value={search}
-        onChange={onChangeSearch}
-        onKeyDown={onKeyDown}
-      />
-      <button onClick={onSubmit}>검색</button>
+    <div>
+      <div className={style.searchbar_container}>
+        <input
+          value={search}
+          onChange={onChangeSearch}
+          placeholder="검색어를 입력하세요..."
+          onKeyDown={onKeyDown}
+        />
+        <button onClick={onSubmit}>검색</button>
+      </div>
+      {children}
     </div>
   );
 }
