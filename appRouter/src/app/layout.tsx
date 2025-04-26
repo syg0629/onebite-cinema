@@ -5,7 +5,8 @@ import { MovieData } from "@/types";
 
 async function Footer() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SEVER_URL}/movie`
+    `${process.env.NEXT_PUBLIC_API_SEVER_URL}/movie`,
+    { cache: "force-cache" }
   );
   if (!response.ok)
     return <footer className={style.footer}>오류가 발생했습니다...</footer>;
