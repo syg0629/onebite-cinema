@@ -1,10 +1,10 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import style from "./serachbar.module.css";
 
-export default function Searchbar({ children }: { children: ReactNode }) {
+export default function Searchbar({ children }: PropsWithChildren) {
   const router = useRouter();
   //app router에서는 router.query를 사용할 수 없다. useSearchParams를 사용해야 함
   const searchParams = useSearchParams();

@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
-        <Searchbar />
+        <Searchbar></Searchbar>
       </Suspense>
       {children}
     </div>
