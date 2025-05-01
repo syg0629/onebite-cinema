@@ -5,11 +5,14 @@ import { MovieData } from "@/types";
 
 async function Footer() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SEVER_URL}/movie`,
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie`,
     { cache: "force-cache" }
   );
-  if (!response.ok)
+
+  if (!response.ok) {
     return <footer className={style.footer}>오류가 발생했습니다...</footer>;
+  }
+
   const movies: MovieData[] = await response.json();
   const movieCount = movies.length;
   return (

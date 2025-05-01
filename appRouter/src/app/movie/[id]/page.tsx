@@ -19,7 +19,7 @@ export default async function Page({
 }) {
   const { id } = await params;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SEVER_URL}/movie/${id}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/${id}`
   );
   if (!response.ok) {
     if (response.status === 404) {
