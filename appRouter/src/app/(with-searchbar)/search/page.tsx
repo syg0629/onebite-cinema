@@ -1,5 +1,6 @@
 import { delay } from "@/app/util/delay";
 import MovieItem from "@/components/movie-item";
+import MovieListSkeleton from "@/components/skeleton/movie-list-skeleton";
 import { MovieData } from "@/types";
 import { Suspense } from "react";
 
@@ -27,7 +28,10 @@ export default async function Page({
   searchParams: { q?: string };
 }) {
   return (
-    <Suspense key={searchParams.q || ""} fallback={<div>Loading...</div>}>
+    <Suspense
+      key={searchParams.q || ""}
+      fallback={<MovieListSkeleton count={3} />}
+    >
       <SearchResult q={searchParams.q || ""} />
     </Suspense>
   );

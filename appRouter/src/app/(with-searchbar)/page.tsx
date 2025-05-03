@@ -3,6 +3,7 @@ import style from "./page.module.css";
 import { MovieData } from "@/types";
 import { delay } from "../util/delay";
 import { Suspense } from "react";
+import MovieListSkeleton from "@/components/skeleton/movie-list-skeleton";
 
 async function Allmovies() {
   await delay(1500);
@@ -36,7 +37,7 @@ export default async function Home() {
       <section>
         <h3>지금 추천하는 도서</h3>
         <div className={style.recommand_container}>
-          <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <Suspense fallback={<MovieListSkeleton count={3} />}>
             <Recomovies />
           </Suspense>
         </div>
@@ -44,7 +45,7 @@ export default async function Home() {
       <section>
         <h3>등록된 모든 도서</h3>
         <div className={style.all_container}>
-          <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <Suspense fallback={<MovieListSkeleton count={5} />}>
             <Allmovies />
           </Suspense>
         </div>
