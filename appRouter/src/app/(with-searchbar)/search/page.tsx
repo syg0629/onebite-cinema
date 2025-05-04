@@ -25,14 +25,13 @@ async function SearchResult({ q }: { q: string }) {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
+  const { q } = await searchParams;
+
   return (
-    <Suspense
-      key={searchParams.q || ""}
-      fallback={<MovieListSkeleton count={3} />}
-    >
-      <SearchResult q={searchParams.q || ""} />
+    <Suspense key={q || ""} fallback={<MovieListSkeleton count={3} />}>
+      <SearchResult q={q || ""} />
     </Suspense>
   );
 }
