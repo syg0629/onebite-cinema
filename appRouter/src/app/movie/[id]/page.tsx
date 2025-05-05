@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import style from "./page.module.css";
+import { createReviewServerAction } from "@/actions/create-review.action";
 
 // generateStaticParams로 만들지 않은 페이지는 다 404 에러 페이지로 이동
 // export const dynamicParams = "false";
@@ -12,14 +13,9 @@ export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string | string[] }>;
-}) {
-  const { id } = await params;
+async function MovieDetail({ movieId }: { movieId: string }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/${id}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/${movieId}`
   );
   if (!response.ok) {
     if (response.status === 404) {
@@ -41,7 +37,7 @@ export default async function Page({
   } = movie;
 
   return (
-    <div className={style.container}>
+    <section>
       <div
         className={style.poster_img_container}
         style={{ backgroundImage: `url('${posterImgUrl}')` }}
@@ -55,6 +51,28 @@ export default async function Page({
       <div>{company}</div>
       <div className={style.subTitle}>{subTitle}</div>
       <div className={style.description}>{description}</div>
+    </section>
+  );
+}
+
+function ReviewEditor({ movieId }: { movieId: string }) {
+  return (
+    <section>
+      <form action={createReviewServerAction}>
+        <input name="movieId" value={movieId} hidden readOnly />
+        <input required name="content" placeholder="리뷰 내용" />
+        <input required name="author" placeholder="작성자" />
+        <button type="submit">작성하기</button>
+      </form>
+    </section>
+  );
+}
+
+export default function Page({ params }: { params: { id: string } }) {
+  return (
+    <div className={style.container}>
+      <MovieDetail movieId={params.id} />
+      <ReviewEditor movieId={params.id} />
     </div>
   );
 }
