@@ -40,7 +40,7 @@ export default async function Home() {
   return (
     <div className={style.container}>
       <section>
-        <h3>지금 추천하는 도서</h3>
+        <h3>지금 추천하는 영화</h3>
         <div className={style.recommand_container}>
           <Suspense fallback={<MovieListSkeleton count={3} />}>
             <Recomovies />
@@ -48,7 +48,7 @@ export default async function Home() {
         </div>
       </section>
       <section>
-        <h3>등록된 모든 도서</h3>
+        <h3>등록된 모든 영화</h3>
         <div className={style.all_container}>
           <Suspense fallback={<MovieListSkeleton count={5} />}>
             <Allmovies />
