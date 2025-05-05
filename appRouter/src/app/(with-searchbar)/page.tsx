@@ -21,13 +21,7 @@ async function Allmovies() {
   if (!response.ok) return <div>오류가 발생했습니다...</div>;
   const allmovies: MovieData[] = await response.json();
 
-  return (
-    <div>
-      {allmovies.map((movie) => (
-        <MovieItem key={movie.id} {...movie} />
-      ))}
-    </div>
-  );
+  return allmovies.map((movie) => <MovieItem key={movie.id} {...movie} />);
 }
 
 async function Recomovies() {
@@ -39,16 +33,8 @@ async function Recomovies() {
   if (!response.ok) return <div>오류가 발생했습니다...</div>;
   const recomovies: MovieData[] = await response.json();
 
-  return (
-    <div>
-      {recomovies.map((movie) => (
-        <MovieItem key={movie.id} {...movie} />
-      ))}
-    </div>
-  );
+  return recomovies.map((movie) => <MovieItem key={movie.id} {...movie} />);
 }
-
-export const dynamic = "force-dynamic";
 
 export default async function Home() {
   return (
