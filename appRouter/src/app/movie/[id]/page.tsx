@@ -3,6 +3,7 @@ import style from "./page.module.css";
 import { ReviewData } from "@/types";
 import ReviewItem from "@/components/review-item";
 import ReviewEditor from "@/components/review-editor";
+import Image from "next/image";
 
 // generateStaticParams로 만들지 않은 페이지는 다 404 에러 페이지로 이동
 // export const dynamicParams = "false";
@@ -44,7 +45,12 @@ async function MovieDetail({ movieId }: { movieId: string }) {
         className={style.poster_img_container}
         style={{ backgroundImage: `url('${posterImgUrl}')` }}
       >
-        <img src={posterImgUrl} />
+        <Image
+          src={posterImgUrl}
+          width={245}
+          height={350}
+          alt={`영화 ${title} 포스터`}
+        />
       </div>
       <div className={style.title}>{title}</div>
       <div className={style.movie_details}>
