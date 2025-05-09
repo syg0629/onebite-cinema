@@ -1,10 +1,11 @@
 .modal {
   width: 80%;
-  max-width: 500px;
-
+  max-width: 700px;
+  background-color: rgba(0, 0, 0, 0.9);
   margin-top: 20px;
   border-radius: 5px;
   border: none;
+  color: white;
 }
 
 .modal::backdrop {

@@ -33,7 +33,7 @@ export default function ReviewEditor({ movieId }: { movieId: string }) {
             placeholder="작성자"
           />
           <button disabled={isPending} type="submit">
-            {isPending ? "리뷰 작성 중..." : "리뷰 작성하기"}
+            {isPending ? "리뷰 작성 중..." : "리뷰 작성"}
           </button>
         </div>
       </form>

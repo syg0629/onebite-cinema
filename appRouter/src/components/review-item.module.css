@@ -27,4 +27,6 @@
 .delete_btn {
   color: #999;
   cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
 }
