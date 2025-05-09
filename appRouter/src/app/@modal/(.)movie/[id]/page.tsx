@@ -7,7 +7,6 @@ import Modal from "@/components/modal";
 export default function Page(props: any) {
   return (
     <Modal>
-      가로채기 성공!
       <MoviePage {...props} />
     </Modal>
   );
