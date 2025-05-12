@@ -13,8 +13,18 @@ import { Metadata } from "next";
 // `generateStaticParams`라는 약속된 함수를 사용해 빌드 타임에 어떤 URL 파라미터가 존재할지 직접 반환해야 함
 // URL 파라미터 값을 명시할 때에는 문자열 데이터로만 명시
 // generateStaticParams를 쓰는 순간, 그 페이지는 무조건 정적으로 생성, 컴포넌트 내부에 동적 데이터 패칭을 해도 무시
-export function generateStaticParams() {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+export async function generateStaticParams() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie`
+  );
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const movies: MovieData[] = await response.json();
+
+  return movies.map((movie) => ({
+    id: movie.id.toString(),
+  }));
 }
 
 async function MovieDetail({ movieId }: { movieId: string }) {

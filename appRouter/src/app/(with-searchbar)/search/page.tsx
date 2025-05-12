@@ -1,4 +1,3 @@
-import { delay } from "@/app/util/delay";
 import MovieItem from "@/components/movie-item";
 import MovieListSkeleton from "@/components/skeleton/movie-list-skeleton";
 import { MovieData } from "@/types";
@@ -6,7 +5,6 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 async function SearchResult({ q }: { q: string }) {
-  await delay(1500);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/search?q=${q}`,
     { cache: "force-cache" }

@@ -1,7 +1,6 @@
 // 서버 액션 - 간결하고 편리하게 서버 측에서 실행되는 어떠한 동작을 정의
 "use server";
 
-import { delay } from "@/app/util/delay";
 import { revalidateTag } from "next/cache";
 
 export async function createReviewServerAction(_: any, formData: FormData) {
@@ -17,7 +16,6 @@ export async function createReviewServerAction(_: any, formData: FormData) {
   }
 
   try {
-    await delay(2000);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_SERVER_URL}/review`,
       {
